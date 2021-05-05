@@ -1,130 +1,146 @@
 package com.CouponManagment.CouponManagment.dto;
 
-import java.sql.Date;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="coupons")
+@Table(name = "coupons")
 public class Coupon {
-	private Long ID;
+	private Long id;
 	private Company company;
 	private Customer customer;
-	private String TITLE;
-	private java.util.Date START_DATE;
-	private java.util.Date END_DATE;
-	private Integer AMOUNT;
-	private TypeEnum TYPE;
-	private String MESSAGE;
-	private Double PRICE;
-	private String IMAGE;
-	
-	 
-	
-    @Id
-    @GeneratedValue
-	public Long getID() {
-		return ID;
+	private String title;
+	private java.util.Date startDate;
+	private java.util.Date endDate;
+	private Integer amount;
+	private TypeEnum type;
+	private String message;
+	private Double price;
+	private String image;
+
+	@Id
+	@GeneratedValue
+
+	public Long getId() {
+		return id;
 	}
-	public void setID(Long iD) {
-		ID = iD;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	
-	@Column(nullable=false)
-	public String getTITLE() {
-		return TITLE;
+
+	@Column(nullable = false)
+	public String getTitle() {
+		return title;
 	}
-	public void setTITLE(String tITLE) {
-		TITLE = tITLE;
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	
-	@Column(nullable=false)
-	public Integer getAMOUNT() {
-		return AMOUNT;
+
+	@Column(nullable = false)
+	public java.util.Date getStartDate() {
+		return startDate;
 	}
-	@Column(nullable=false)
-	public java.util.Date getSTART_DATE() {
-		return START_DATE;
+
+	public void setStartDate(java.util.Date startDate) {
+		this.startDate = startDate;
 	}
-	public void setSTART_DATE(java.util.Date sTART_DATE) {
-		START_DATE = sTART_DATE;
+
+	@Column(nullable = false)
+	public java.util.Date getEndDate() {
+		return endDate;
 	}
-	@Column(nullable=false)
-	public java.util.Date getEND_DATE() {
-		return END_DATE;
+
+	public void setEndDate(java.util.Date endDate) {
+		this.endDate = endDate;
 	}
-	public void setEND_DATE(java.util.Date eND_DATE) {
-		END_DATE = eND_DATE;
+
+	@Column(nullable = false)
+	public Integer getAmount() {
+		return amount;
 	}
-	public void setAMOUNT(Integer aMOUNT) {
-		AMOUNT = aMOUNT;
+
+	public void setAmount(Integer amount) {
+		this.amount = amount;
 	}
-	@Column(nullable=false)
-	public TypeEnum getTYPE() {
-		return TYPE;
+
+	@Column(nullable = false)
+	public TypeEnum getType() {
+		return type;
 	}
-	public void setTYPE(TypeEnum tYPE) {
-		TYPE = tYPE;
+
+	public void setType(TypeEnum type) {
+		this.type = type;
 	}
-	@Column(nullable=false)
-	public String getMESSAGE() {
-		return MESSAGE;
+
+	@Column(nullable = false)
+	public String getMessage() {
+		return message;
 	}
-	public void setMESSAGE(String mESSAGE) {
-		MESSAGE = mESSAGE;
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
-	@Column(nullable=false)
-	public Double getPRICE() {
-		return PRICE;
+
+	@Column(nullable = false)
+	public Double getPrice() {
+		return price;
 	}
-	public void setPRICE(Double pRICE) {
-		PRICE = pRICE;
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
-	@Column(nullable=false)
-	public String getIMAGE() {
-		return IMAGE;
+
+	@Column(nullable = false)
+	public String getImage() {
+		return image;
 	}
-	public void setIMAGE(String iMAGE) {
-		IMAGE = iMAGE;
+
+	public void setImage(String image) {
+		this.image = image;
 	}
-	
+
 	@ManyToOne
-	//@JoinColumn(name = "ID",insertable = false, updatable = false)
+	@JsonIgnore
 	public Company getCompany() {
 		return company;
 	}
+
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+
 	@ManyToOne
-	//@JoinColumn(name = "ID",insertable = false, updatable = false)
+
 	public Customer getCustomer() {
 		return customer;
 	}
+
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 	@Override
-	public String toString() {
-		return "Coupon [ID=" + ID + ", company=" + company + ", customer=" + customer + ", TITLE=" + TITLE
-				+ ", START_DATE=" + START_DATE + ", END_DATE=" + END_DATE + ", AMOUNT=" + AMOUNT + ", TYPE=" + TYPE
-				+ ", MESSAGE=" + MESSAGE + ", PRICE=" + PRICE + ", IMAGE=" + IMAGE + "]";
+	public boolean equals(Object o){
+	    if(o instanceof Coupon){
+	        Long toCompare = ((Coupon) o).id;
+	        return id.equals(toCompare);
+	    }
+	    return false;
 	}
+
+	@Override
+	public String toString() {
+		return "Coupon [id=" + id + ", title=" + title + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", amount=" + amount + ", type=" + type + ", message=" + message + ", price=" + price + ", image="
+				+ image + "]";
+	}
+
+	
 }
-	
-	
-	
-
-	
-	
-	
-	
-

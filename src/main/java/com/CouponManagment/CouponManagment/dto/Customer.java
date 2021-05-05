@@ -11,39 +11,49 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
+
 @Entity
 @Table(name="customers")
 public class Customer {
-	private Long ID;
-	private  String CUST_NAME;
-    private String PASSWORD;
+
+	private Long id;
+	private  String customerName;
+    private String password;
     private Collection<Coupon> couponsList = new ArrayList<>() ;
+    
     
     
     @Id
     @GeneratedValue
-	public Long getID() {
-		return ID;
+    public Long getId() {
+		return id;
 	}
-	public void setID(Long iD) {
-		ID = iD;
+	public void setId(Long id) {
+		this.id = id;
 	}
+
 	@Column(nullable=false)
-	public String getCUST_NAME() {
-		return CUST_NAME;
-	}
-	public void setCUST_NAME(String cUST_NAME) {
-		CUST_NAME = cUST_NAME;
-	}
-	@Column(nullable=false)
-	public String getPASSWORD() {
-		return PASSWORD;
-	}
-	public void setPASSWORD(String pASSWORD) {
-		PASSWORD = pASSWORD;
+	public String getPassword() {
+		return password;
 	}
 	
-	@OneToMany (targetEntity = Coupon.class,fetch = FetchType.EAGER)
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
+	
+	
+	@Column(nullable=false)
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	
+	@OneToMany (mappedBy ="customer" ,fetch = FetchType.EAGER)
 	public Collection<Coupon> getCouponsList() {
 		return couponsList;
 	}
@@ -52,11 +62,10 @@ public class Customer {
 	}
 	@Override
 	public String toString() {
-		return "Customer [ID=" + ID + ", CUST_NAME=" + CUST_NAME + ", PASSWORD=" + PASSWORD + "]";
+		return "Customer [id=" + id + ", customerName=" + customerName + ", password=" + password + ", couponsList="
+				+ couponsList + "]";
 	}
-    
-		 
-	 
 	
-
+	
+	
 }

@@ -23,8 +23,8 @@ import com.CouponManagment.CouponManagment.services.ClientType;
 import com.CouponManagment.CouponManagment.services.CompanyFacade;
 import com.CouponManagment.CouponManagment.services.CouponClientFacade;
 import com.CouponManagment.CouponManagment.services.CustomerFacade;
-@Service
 
+@Service
 public class CouponSystem {
 	@Autowired
 	private DailyCouponExpirationTask task;
@@ -47,7 +47,7 @@ private  ApplicationContext ctx;
 	
 		
 		Thread t = new Thread(task);
-	//	t.start();
+		t.start();
 		
 	}
 	
@@ -66,7 +66,7 @@ private  ApplicationContext ctx;
 			 return af ;
 		}
 		for(Company curr : companies){
-			if(name.equals(curr.getCOMP_NAME())&& password.equals(curr.getPASSWORD()) && type.equals(ClientType.COMPANY)){
+			if(name.equals(curr.getCompanyName())&& password.equals(curr.getPassword()) && type.equals(ClientType.COMPANY)){
 			CouponClientFacade cof =  ctx.getBean(CompanyFacade.class);
 			
 				
@@ -74,7 +74,7 @@ private  ApplicationContext ctx;
 			}
 		}
 		for(Customer curr : customers){
-			if(name.equals(curr.getCUST_NAME()) && password.equals(curr.getPASSWORD()) && type.equals(ClientType.CUSTOMER)){
+			if(name.equals(curr.getCustomerName()) && password.equals(curr.getPassword()) && type.equals(ClientType.CUSTOMER)){
 			CouponClientFacade cuf =ctx.getBean(CustomerFacade.class);
 				
 				return cuf;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.CouponManagment.CouponManagment.dto.Company;
@@ -17,7 +18,11 @@ public class CompanyDAO {
 	@Autowired
 private CompanyRepository repo;
 	
+	@Autowired
+	private PasswordEncoder bcryptEncoder;
+	
     public  void addCompany(Company company) {
+    	company.setPassword(bcryptEncoder.encode(company.getPassword()));
 		repo.save(company);
 		
 	}
@@ -41,8 +46,8 @@ private CompanyRepository repo;
     public void updateCompany (long id,Company comp) {
     	Company company = findCompany(id);
     	//company.setCOMP_NAME(comp.getCOMP_NAME());
-    	company.setPASSWORD(comp.getPASSWORD());
-    	company.setEMAIL(comp.getEMAIL());
+    	company.setPassword(bcryptEncoder.encode(comp.getPassword()));
+    	company.setEmail(comp.getEmail());
     	repo.save(company);
 		
 	}

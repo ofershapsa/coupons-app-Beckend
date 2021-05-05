@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.CouponManagment.CouponManagment.dto.Customer;
@@ -13,7 +14,11 @@ public class CustomerDAO {
 	@Autowired
 	private JpaRepository<Customer, Long> repo;
 	
+	@Autowired
+	private PasswordEncoder bcryptEncoder;
+	
 	public void addCustomer(Customer customer) {
+		customer.setPassword(bcryptEncoder.encode(customer.getPassword()));
 		repo.save(customer);
 		
 	}
@@ -37,7 +42,7 @@ public class CustomerDAO {
 	public void updateCustomer(long id,Customer cust ) {
 		Customer customer = findCustomer(id);
 	//	customer.setCUST_NAME(cust.getCUST_NAME());
-		customer.setPASSWORD(cust.getPASSWORD());
+		customer.setPassword(bcryptEncoder.encode(cust.getPassword()));
 		repo.save(customer);
 		
 	}

@@ -33,14 +33,14 @@ public class CouponDAO  {
 	
 	public void updateCoupon(long id,Coupon coup) {
 		Coupon coupon = findCoupon(id);
-		coupon.setTITLE(coup.getTITLE());
-		coupon.setMESSAGE(coup.getMESSAGE());
-		coupon.setPRICE(coup.getPRICE());
-		coupon.setSTART_DATE(coup.getSTART_DATE());
-		coupon.setEND_DATE(coup.getEND_DATE());
-		coupon.setAMOUNT(coup.getAMOUNT());
-		coupon.setTYPE(coup.getTYPE());
-		coupon.setIMAGE(coup.getIMAGE());
+		coupon.setTitle(coup.getTitle());
+		coupon.setMessage(coup.getMessage());
+		coupon.setPrice(coup.getPrice());
+		coupon.setStartDate(coup.getStartDate());
+		coupon.setEndDate(coup.getEndDate());
+		coupon.setAmount(coup.getAmount());
+		coupon.setType(coup.getType());
+		coupon.setImage(coup.getImage());
 		repo.save(coupon);
 	}
 

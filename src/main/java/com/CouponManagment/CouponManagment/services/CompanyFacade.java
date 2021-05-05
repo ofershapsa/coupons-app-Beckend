@@ -26,11 +26,11 @@ public class CompanyFacade implements CouponClientFacade {
 		
 	}
 	public void removeCoupon(Coupon coupon){
-		 coupRepo.deleteCoupon(coupon.getID());
+		 coupRepo.deleteCoupon(coupon.getId());
 	}
 	
 	public void updateCoupon(Coupon coup) {
-		 coupRepo.updateCoupon(coup.getID(), coup);
+		 coupRepo.updateCoupon(coup.getId(), coup);
 	}
 	public Coupon getCoupon(long id) {
 		return  coupRepo.findCoupon(id);

@@ -47,8 +47,8 @@ public class DailyCouponExpirationTask implements Runnable {
 		Date today = cal.getTime();
 		java.util.List<Coupon> coupons = couponDAO.selectAllCoupons();
 		for(Coupon curr : coupons){
-			if(curr != null && curr.getEND_DATE()!= null && today.getDate() == curr.getEND_DATE().getDate()){
-				couponDAO.deleteCoupon(curr.getID());
+			if(curr != null && curr.getEndDate()!= null && today.getDate() == curr.getEndDate().getDate()){
+				couponDAO.deleteCoupon(curr.getId());
 			}
 		}
 	}

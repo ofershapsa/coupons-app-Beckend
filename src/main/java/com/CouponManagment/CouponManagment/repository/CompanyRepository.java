@@ -9,5 +9,5 @@ import com.CouponManagment.CouponManagment.dto.Company;
 
 
 public interface CompanyRepository extends JpaRepository<Company,Long>  {
-
+	Company findByCompanyName(String companyName);
 }

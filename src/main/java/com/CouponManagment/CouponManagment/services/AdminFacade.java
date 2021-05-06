@@ -2,6 +2,8 @@ package com.CouponManagment.CouponManagment.services;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -43,7 +45,7 @@ public class AdminFacade implements CouponClientFacade {
 	public Company getCompany(long id){
    return    compRepo.findCompany(id);
 	}
-	public Iterable<Company> getAllCompanies() {
+	public List<Company> getAllCompanies() {
 		return compRepo.selectAllCompanies();
 	}
 	public void createCustomer(Customer customer) {
@@ -58,7 +60,7 @@ public class AdminFacade implements CouponClientFacade {
 	public Customer getCustomer(long id) {
 		return custRepo.findCustomer(id);
 	}
-	public Iterable<Customer> getAllCustomers() {
+	public List<Customer> getAllCustomers() {
 		return custRepo.selectAllCustomers();
 	}
 	

@@ -1,4 +1,4 @@
-package com.CouponManagment.CouponManagment.controller;
+package com.CouponManagment.CouponManagment.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

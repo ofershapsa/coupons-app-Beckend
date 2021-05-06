@@ -34,6 +34,7 @@ public class CouponManagmentApplication {
 		company.setPassword("kupot123");
 		company.setEmail("kupot@gmail.com");
 		// af.createCompany(company);
+	//System.out.println(	af.getCompany(3L));
 		CompanyDAO cd = ctx.getBean(CompanyDAO.class);
 		// company = cd.findCompany(5L);
 //	af.removeCompany(company);

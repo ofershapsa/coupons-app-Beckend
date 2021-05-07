@@ -1,27 +1,34 @@
 package com.CouponManagment.CouponManagment.model;
 import java.io.Serializable;
 
+import com.CouponManagment.CouponManagment.services.ClientType;
+
 public class JwtRequest  implements Serializable{
 	
 	private static final long serialVersionUID = 5926468583005150707L;
 	
 	private String username;
 	private String password;
-	
+	private ClientType type;
 	//need default constructor for JSON Parsing
 	public JwtRequest()
 	{
 		
 	}
 
-	public JwtRequest(String username, String password) {
+	public JwtRequest(String username, String password,ClientType type) {
 		this.setUsername(username);
 		this.setPassword(password);
-		
+		this.setType(type);
 	}
 	
+	public ClientType getType() {
+		return type;
+	}
 
-	
+	public void setType(ClientType type) {
+		this.type = type;
+	}
 
 	public String getUsername() {
 		return this.username;

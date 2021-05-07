@@ -29,6 +29,7 @@ public class CouponManagmentApplication {
 		customer.setCustomerName("ofer shapsa");
 		customer.setPassword("ofer123");
 		// af.createCustomer(customer);
+//		System.out.println(af.getCustomer(1L));
 		Company company = new Company();
 		company.setCompanyName("kupot");
 		company.setPassword("kupot123");

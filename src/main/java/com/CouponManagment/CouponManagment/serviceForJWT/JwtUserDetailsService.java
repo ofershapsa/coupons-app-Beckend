@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import com.CouponManagment.CouponManagment.repository.CompanyRepository;
 import com.CouponManagment.CouponManagment.repository.CustomerReposiroty;
 import com.CouponManagment.CouponManagment.services.ClientType;
+import com.CouponManagment.CouponManagment.config.JwtTokenUtil;
 import com.CouponManagment.CouponManagment.dto.Company;
 import com.CouponManagment.CouponManagment.dto.Customer;
 
@@ -26,12 +27,15 @@ import com.CouponManagment.CouponManagment.dto.Customer;
 public class JwtUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	//private UserDao userDao;
 	private CompanyRepository cr;
 	
 	
 	@Autowired
 	private CustomerReposiroty cre;
+	
+	@Autowired
+	private JwtTokenUtil jwtTokenUtil;
+
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -40,11 +44,13 @@ public class JwtUserDetailsService implements UserDetailsService {
 		
 		if (company == null) {
 			if ("admin".equals(username)) {
+				jwtTokenUtil.setClientType(ClientType.ADMIN);
 				return new User("admin", "$2a$10$BtBNMih9qknsVbNx/5AtsONCleL4TVtVm5imMRjbqRtwTf1APJ8ta"
 						+ "",
 						getAuthorities(ClientType.ADMIN));
 			} 
 			if(customer!=null) {
+				jwtTokenUtil.setClientType(ClientType.CUSTOMER);
 				return new org.springframework.security.core.userdetails.User(customer.getCustomerName(), customer.getPassword(),
 						getAuthorities(ClientType.CUSTOMER));
 			}
@@ -52,7 +58,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		}
 		
 		
-		
+		jwtTokenUtil.setClientType(ClientType.COMPANY);
 		return new org.springframework.security.core.userdetails.User(company.getCompanyName(), company.getPassword(),
 				getAuthorities(ClientType.COMPANY));
 		

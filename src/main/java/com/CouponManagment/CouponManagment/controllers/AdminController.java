@@ -17,8 +17,8 @@ import com.CouponManagment.CouponManagment.dto.Customer;
 import com.CouponManagment.CouponManagment.services.AdminFacade;
 
 @RestController
-@PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/admin")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AdminController {
 	
 @Autowired
@@ -48,13 +48,30 @@ private AdminFacade af;
 	
 	@CrossOrigin
 	@RequestMapping(value ="/getCustomer/{id}",method = RequestMethod.GET)
-	public  Customer getCustomer(@PathVariable("id") long id) {
+	public   Customer getCustomer(@PathVariable(value ="id") long id) {
 		return af.getCustomer(id);
 	}
 	@CrossOrigin
-	@RequestMapping(value="/createCompany, method = RequestMethod.POST")
+	@RequestMapping(value="/createCompany", method = RequestMethod.POST)
 	public void createCompany(@RequestBody Company company) {
 		af.createCompany(company);
+	}
+	@CrossOrigin
+	@RequestMapping(value ="/createCustomer",method = RequestMethod.POST)
+	public void createCustomer(@RequestBody Customer customer) {
+		af.createCustomer(customer);
+	}
+	@CrossOrigin
+	@RequestMapping(value ="/removeCompany",method = RequestMethod.DELETE)
+	public void removeCompany(@RequestBody Company company) {
+		af.removeCompany(company);
+		
+	}
+	@CrossOrigin
+	@RequestMapping(value ="/removeCustomer",method = RequestMethod.DELETE)
+	public void removeCustomer(@RequestBody Customer customer) {
+		af.removeCustomer(customer);
+		
 	}
 	
 

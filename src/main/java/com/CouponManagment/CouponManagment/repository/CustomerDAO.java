@@ -18,6 +18,7 @@ public class CustomerDAO {
 	private PasswordEncoder bcryptEncoder;
 	
 	public void addCustomer(Customer customer) {
+		//System.out.println(customer);
 		customer.setPassword(bcryptEncoder.encode(customer.getPassword()));
 		repo.save(customer);
 		

@@ -34,15 +34,24 @@ public class JwtAuthenticationController {
 	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+		String type = authenticationRequest.getType().toString();
+		String start = "[ROLE_";
+		type = start.concat(type);
+		type = type.concat("]");
+		System.out.println(type);
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-		
 		final UserDetails userDetails = userDetailsService
 				.loadUserByUsername(authenticationRequest.getUsername());
+         System.out.println(userDetails.getAuthorities().toString());
+         if(userDetails.getAuthorities().toString().equals(type)) {
+        	 final String token = jwtTokenUtil.generateToken(userDetails);
+        	 JwtResponse jrs = new JwtResponse(token);
+        	 return ResponseEntity.ok(jrs);
+        	 
+         }
          
+         return ResponseEntity.badRequest().build();
                
-		final String token = jwtTokenUtil.generateToken(userDetails);
-         JwtResponse jrs = new JwtResponse(token);
-		return ResponseEntity.ok(jrs);
 }
 
 	

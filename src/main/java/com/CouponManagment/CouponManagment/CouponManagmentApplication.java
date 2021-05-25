@@ -55,8 +55,8 @@ public class CouponManagmentApplication {
 		// System.out.println(ds);
 		// System.out.println(de);
 
-		Company co = cd.findCompany(4L);
-		Customer cu = cud.findCustomer(1L);
+		//Company co = cd.findCompany(4L);
+		//Customer cu = cud.findCustomer(1L);
 		// System.out.println(cof.getAllCoupons());
 		// Coupon c = new Coupon();
 		// c = coup.findCoupon(6);

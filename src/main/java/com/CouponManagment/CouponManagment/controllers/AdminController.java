@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.CouponManagment.CouponManagment.dto.Company;
@@ -41,14 +41,15 @@ private AdminFacade af;
 		
 	}
 	@CrossOrigin
-	@RequestMapping(value ="/getCompany/{id}",method = RequestMethod.GET)
-	public  Company getCompany(@PathVariable("id") long id) {
+	@RequestMapping(value = "/getCompany/{id}",method = RequestMethod.GET)
+	public  Company getCompany(@PathVariable("id")long id) {
 		return af.getCompany(id);
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value ="/getCustomer/{id}",method = RequestMethod.GET)
-	public   Customer getCustomer(@PathVariable(value ="id") long id) {
+	@RequestMapping(value = "/getCustomer/{id}",method = RequestMethod.GET)
+	public  Customer getCustomer(@PathVariable("id") long id) {
+		
 		return af.getCustomer(id);
 	}
 	@CrossOrigin
@@ -73,6 +74,20 @@ private AdminFacade af;
 		af.removeCustomer(customer);
 		
 	}
+	
+	@CrossOrigin
+	@RequestMapping(value ="/updateCompany",method = RequestMethod.PUT )
+	public void updateCompany(@RequestBody Company company) {
+		af.updateCompany(company);
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value ="/updateCustomer",method = RequestMethod.PUT )
+	public void updateCustomer(@RequestBody Customer customer) {
+		af.updateCustomer(customer);
+	}
+	
+	
 	
 
 }

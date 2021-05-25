@@ -1,7 +1,17 @@
 package com.CouponManagment.CouponManagment.controllers;
 
+import java.net.HttpCookie;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseCookie.ResponseCookieBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
+import org.springframework.http.ResponseEntity.HeadersBuilder;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -46,7 +56,7 @@ public class JwtAuthenticationController {
          if(userDetails.getAuthorities().toString().equals(type)) {
         	 final String token = jwtTokenUtil.generateToken(userDetails);
         	 JwtResponse jrs = new JwtResponse(token);
-        	 return ResponseEntity.ok(jrs);
+        	 return  ResponseEntity.ok(jrs);
         	 
          }
          
@@ -54,6 +64,15 @@ public class JwtAuthenticationController {
                
 }
 
+	/* ResponseCookie springCookie = ResponseCookie.from("token", token)
+        	 .httpOnly(true)
+			    .build();
+		
+        	 ResponseEntity
+     	    .ok()
+     	    .header(HttpHeaders.SET_COOKIE, springCookie.toString())
+     	    .build();
+	 */
 	
 
 	private void authenticate(String username, String password) throws Exception {

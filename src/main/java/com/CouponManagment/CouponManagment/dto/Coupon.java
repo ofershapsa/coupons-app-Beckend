@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -43,7 +46,7 @@ public class Coupon {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
+	
 	@Column(nullable = false)
 	public java.util.Date getStartDate() {
 		return startDate;
@@ -52,7 +55,7 @@ public class Coupon {
 	public void setStartDate(java.util.Date startDate) {
 		this.startDate = startDate;
 	}
-
+	
 	@Column(nullable = false)
 	public java.util.Date getEndDate() {
 		return endDate;

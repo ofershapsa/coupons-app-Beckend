@@ -35,7 +35,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 	
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
-
+	
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -63,7 +63,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 				getAuthorities(ClientType.COMPANY));
 		
 	}
-
+	
+	
 	
 	public Collection<? extends GrantedAuthority> getAuthorities(ClientType clientType) {
 		Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
@@ -83,5 +84,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 		return authorities;
 	}
 	
+	
+	
 
 }
+

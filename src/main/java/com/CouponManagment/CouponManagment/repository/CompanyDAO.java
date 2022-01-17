@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.CouponManagment.CouponManagment.dto.Company;
+import com.CouponManagment.CouponManagment.dto.Coupon;
 
 
 
@@ -51,5 +52,9 @@ private CompanyRepository repo;
     	repo.save(company);
 		
 	}
-
+    
+    public List<Coupon>getCouponsListByCompany(long id) {
+	    Company company =findCompany(id);
+		return  (List<Coupon>) company.getCouponsList();
+	}
 }

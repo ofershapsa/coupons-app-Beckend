@@ -42,7 +42,7 @@ public class CustomerDAO {
 	
 	public void updateCustomer(long id,Customer cust ) {
 		Customer customer = findCustomer(id);
-	//	customer.setCUST_NAME(cust.getCUST_NAME());
+		customer.setCustomerName(cust.getCustomerName());
 		customer.setPassword(bcryptEncoder.encode(cust.getPassword()));
 		repo.save(customer);
 		

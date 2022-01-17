@@ -2,6 +2,7 @@ package com.CouponManagment.CouponManagment.controllers;
 
 import java.net.HttpCookie;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -43,7 +44,8 @@ public class JwtAuthenticationController {
 	
 	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest,HttpServletResponse response) throws Exception {
+		
 		String type = authenticationRequest.getType().toString();
 		String start = "[ROLE_";
 		type = start.concat(type);
@@ -55,6 +57,14 @@ public class JwtAuthenticationController {
          System.out.println(userDetails.getAuthorities().toString());
          if(userDetails.getAuthorities().toString().equals(type)) {
         	 final String token = jwtTokenUtil.generateToken(userDetails);
+        	 Cookie cookie = new Cookie("token", token);
+        	  //cookie.setSecure(true);
+        	  cookie.setHttpOnly(true);
+        	  response.addCookie(cookie);
+        	  Cookie cookieName = new Cookie("userName",authenticationRequest.getUsername());
+        	//  cookie.setSecure(true);
+        	  cookieName.setHttpOnly(true);
+        	  response.addCookie(cookieName);
         	 JwtResponse jrs = new JwtResponse(token);
         	 return  ResponseEntity.ok(jrs);
         	 

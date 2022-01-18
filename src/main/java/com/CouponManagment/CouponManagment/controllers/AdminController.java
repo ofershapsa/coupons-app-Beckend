@@ -26,7 +26,7 @@ private AdminFacade af;
 
 
 	@CrossOrigin
-	@RequestMapping(value = "/getAllCompanies", method = RequestMethod.GET)
+	@RequestMapping(value = "company", method = RequestMethod.GET)
 	public List<Company> getAllCompanies() {
 		
 	return af.getAllCompanies();
@@ -34,55 +34,55 @@ private AdminFacade af;
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/getAllCustomers", method = RequestMethod.GET)
+	@RequestMapping(value = "/customer", method = RequestMethod.GET)
 	public List<Customer> getAllCustomers() {
 		
 	return af.getAllCustomers();
 		
 	}
 	@CrossOrigin
-	@RequestMapping(value = "/getCompany/{id}",method = RequestMethod.GET)
+	@RequestMapping(value = "/company/{id}",method = RequestMethod.GET)
 	public  Company getCompany(@PathVariable("id")long id) {
 		return af.getCompany(id);
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/getCustomer/{id}",method = RequestMethod.GET)
+	@RequestMapping(value = "/customer/{id}",method = RequestMethod.GET)
 	public  Customer getCustomer(@PathVariable("id") long id) {
 		
 		return af.getCustomer(id);
 	}
 	@CrossOrigin
-	@RequestMapping(value="/createCompany", method = RequestMethod.POST)
+	@RequestMapping(value="/company", method = RequestMethod.POST)
 	public void createCompany(@RequestBody Company company) {
 		af.createCompany(company);
 	}
 	@CrossOrigin
-	@RequestMapping(value ="/createCustomer",method = RequestMethod.POST)
+	@RequestMapping(value ="/customer",method = RequestMethod.POST)
 	public void createCustomer(@RequestBody Customer customer) {
 		af.createCustomer(customer);
 	}
 	@CrossOrigin
-	@RequestMapping(value ="/removeCompany",method = RequestMethod.DELETE)
+	@RequestMapping(value ="/company",method = RequestMethod.DELETE)
 	public void removeCompany(@RequestBody Company company) {
 		af.removeCompany(company);
 		
 	}
 	@CrossOrigin
-	@RequestMapping(value ="/removeCustomer",method = RequestMethod.DELETE)
+	@RequestMapping(value ="/customer",method = RequestMethod.DELETE)
 	public void removeCustomer(@RequestBody Customer customer) {
 		af.removeCustomer(customer);
 		
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value ="/updateCompany",method = RequestMethod.PUT )
+	@RequestMapping(value ="/company",method = RequestMethod.PUT )
 	public void updateCompany(@RequestBody Company company) {
 		af.updateCompany(company);
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value ="/updateCustomer",method = RequestMethod.PUT )
+	@RequestMapping(value ="/customer",method = RequestMethod.PUT )
 	public void updateCustomer(@RequestBody Customer customer) {
 		af.updateCustomer(customer);
 	}

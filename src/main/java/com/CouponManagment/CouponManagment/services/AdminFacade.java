@@ -1,67 +1,80 @@
 package com.CouponManagment.CouponManagment.services;
 
 
-
 import java.util.List;
 
+import com.CouponManagment.CouponManagment.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.CouponManagment.CouponManagment.dto.Company;
 import com.CouponManagment.CouponManagment.dto.Customer;
-import com.CouponManagment.CouponManagment.repository.CompanyDAO;
-import com.CouponManagment.CouponManagment.repository.CouponDAO;
-import com.CouponManagment.CouponManagment.repository.CustomerDAO;
+
 @Service
-@Scope("singleton")
+//@Scope("singleton")
 public class AdminFacade implements CouponClientFacade {
-	@Autowired
-	private CompanyDAO compRepo;
-	@Autowired
-	private CustomerDAO custRepo;
-	
-	
-	public   AdminFacade() {
-		
-	}
-	
-	
-	public void createCompany(Company company){
-	Iterable<Company> companies =getAllCompanies(); 
-		for(Company curr:companies){
-			if((!company.getCompanyName().equals(curr.getCompanyName()))){
-				compRepo.addCompany(company);
-				
-			}
-		}
-	}
-	public void removeCompany(Company company) {
-		compRepo.deleteCompany(company.getId());
-	}
-	public void updateCompany(Company comp) {
-		compRepo.updateCompany(comp.getId(),comp);
-	}
-	public Company getCompany(long id){
-   return    compRepo.findCompany(id);
-	}
-	public List<Company> getAllCompanies() {
-		return compRepo.selectAllCompanies();
-	}
-	public void createCustomer(Customer customer) {
-		custRepo.addCustomer(customer);
-	}
-	public void removeCustomer(Customer customer) {
-		custRepo.deleteCustomer(customer.getId());
-	}
-	public void updateCustomer(Customer cust) {
-		custRepo.updateCustomer(cust.getId(), cust);
-	}
-	public Customer getCustomer(long id) {
-		return custRepo.findCustomer(id);
-	}
-	public List<Customer> getAllCustomers() {
-		return custRepo.selectAllCustomers();
-	}
-	
+    @Autowired
+    private CompanyRepository compRepo;
+    @Autowired
+    private CustomerRepository custRepo;
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
+
+    public AdminFacade() {
+
+    }
+
+    public void createCompany(Company company) {
+        if (compRepo.existsByCompanyName(company.getCompanyName())) {
+            throw new RuntimeException();
+        }
+
+        company.setPassword(bcryptEncoder.encode(company.getPassword()));
+        compRepo.save(company);
+    }
+
+
+    public void removeCompany(Company company) {
+        compRepo.deleteById(company.getId());
+    }
+
+    public void updateCompany(Company comp) {
+        comp.setPassword(bcryptEncoder.encode(comp.getPassword()));
+       // comp.setEmail(comp.getEmail());
+        compRepo.saveAndFlush(comp);
+
+    }
+
+    public Company getCompany(long id) {
+        return compRepo.findById(id).get();
+    }
+
+    public List<Company> getAllCompanies() {
+        return compRepo.findAll();
+    }
+
+    public void createCustomer(Customer customer) {
+        customer.setPassword(bcryptEncoder.encode(customer.getPassword()));
+        custRepo.save(customer);
+    }
+
+    public void removeCustomer(Customer customer) {
+        custRepo.deleteById(customer.getId());
+    }
+
+    public void updateCustomer(Customer cust) {
+        cust.setPassword(bcryptEncoder.encode(cust.getPassword()));
+        custRepo.saveAndFlush(cust);
+
+    }
+
+    public Customer getCustomer(long id) {
+        return custRepo.findById(id).get();
+    }
+
+    public List<Customer> getAllCustomers() {
+        return custRepo.findAll();
+    }
+
 }

@@ -33,20 +33,20 @@ private AdminFacade af;
 		
 	}
 	
-	@CrossOrigin
+
 	@RequestMapping(value = "/customer", method = RequestMethod.GET)
 	public List<Customer> getAllCustomers() {
 		
 	return af.getAllCustomers();
 		
 	}
-	@CrossOrigin
+
 	@RequestMapping(value = "/company/{id}",method = RequestMethod.GET)
 	public  Company getCompany(@PathVariable("id")long id) {
 		return af.getCompany(id);
 	}
 	
-	@CrossOrigin
+
 	@RequestMapping(value = "/customer/{id}",method = RequestMethod.GET)
 	public  Customer getCustomer(@PathVariable("id") long id) {
 		

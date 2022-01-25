@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,6 +20,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.CouponManagment.CouponManagment.serviceForJWT.JwtUserDetailsService;
 
 import io.jsonwebtoken.ExpiredJwtException;
+import org.springframework.web.util.WebUtils;
+
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter{
 	
@@ -32,6 +35,10 @@ public class JwtRequestFilter extends OncePerRequestFilter{
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
+		Cookie token = WebUtils.getCookie(request,"token");
+
+
+
 
 		final String requestTokenHeader = request.getHeader("Authorization");
 

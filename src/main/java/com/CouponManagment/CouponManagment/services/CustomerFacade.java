@@ -7,9 +7,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.CouponManagment.CouponManagment.dto.Coupon;
-import com.CouponManagment.CouponManagment.dto.TypeEnum;
 import com.CouponManagment.CouponManagment.repository.CouponDAO;
-import com.CouponManagment.CouponManagment.repository.CouponReposirory;
 
 @Service
 @Scope("prototype")

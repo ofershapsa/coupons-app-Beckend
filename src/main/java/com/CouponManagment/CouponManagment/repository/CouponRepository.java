@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.CouponManagment.CouponManagment.dto.Coupon;
 import com.CouponManagment.CouponManagment.dto.TypeEnum;
  
-public interface CouponReposirory extends JpaRepository<Coupon,Long > {
+public interface CouponRepository extends JpaRepository<Coupon,Long > {
 public List<Coupon> getCouponsByType(TypeEnum te);
 //public List<Coupon> getCouponByPrice(Double price);
 //public List<Coupon> getCouponByDate(Date date); 

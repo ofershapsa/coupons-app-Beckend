@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.CouponManagment.CouponManagment.config.JwtTokenUtil;
+import com.CouponManagment.CouponManagment.controllers.request.CouponsByCompany;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,7 +32,7 @@ import com.CouponManagment.CouponManagment.services.CompanyFacade;
 public class CompanyController {
 	@Autowired
 	private CompanyFacade cf;
-	
+
 	
 	
 /*
@@ -44,10 +46,9 @@ public class CompanyController {
 	*/
 	@CrossOrigin
 	@RequestMapping(value = "/getAllCouponsByCompany", method = RequestMethod.GET)
-	public List<Coupon>  getAllCouponsByCompany(HttpServletRequest request) {
-		
-		
-		return cf.getAllCouponsByCompany(request);
+	public List<Coupon>  getAllCouponsByCompany(@RequestBody CouponsByCompany couponsByCompany) {
+
+		return cf.getAllCouponsByCompany(couponsByCompany.getCompanyName());
 	}
 	
 	@CrossOrigin
@@ -59,30 +60,30 @@ public class CompanyController {
 
 	@CrossOrigin
 	@RequestMapping(value = "/getCouponsByType/{type}", method = RequestMethod.GET)
-	public List<Coupon> getCouponsByType(@PathVariable("type")TypeEnum te,HttpServletRequest request) {
+	public List<Coupon> getCouponsByType(@PathVariable("type")TypeEnum te,String token) {
 		
-		return cf.getCouponsByType(te,request);
+		return cf.getCouponsByType(token);
 	}
 	
 	
 	@CrossOrigin
 	@RequestMapping(value = "/getCouponsByPrice/{price}", method = RequestMethod.GET)
-	public List<Coupon> getCouponsByPrice(@PathVariable("price")double price,HttpServletRequest request) {
+	public List<Coupon> getCouponsByPrice(@PathVariable("price")double price,String token) {
 		
-		return cf.getCouponsByPrice(price, request);
+		return cf.getCouponsByPrice(price, token);
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/getCouponsByDate/{date}", method = RequestMethod.GET)
-	public List<Coupon> getCouponsByDate(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") java.util.Date date ,HttpServletRequest request) {
+	public List<Coupon> getCouponsByDate(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") java.util.Date date ,String token) {
 		
-		return cf.getCouponByDate(date, request);
+		return cf.getCouponByDate(date, token);
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value="/removeCoupon", method = RequestMethod.DELETE)
-	public void removeCoupon(@RequestBody Coupon coupon) {
-		cf.removeCoupon(coupon);
+	public void removeCoupon(@RequestBody long id) {
+		cf.removeCoupon(id);
 	}
 	
 	@CrossOrigin

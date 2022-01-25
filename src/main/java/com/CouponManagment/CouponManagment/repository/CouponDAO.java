@@ -4,17 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.CouponManagment.CouponManagment.dto.Company;
 import com.CouponManagment.CouponManagment.dto.Coupon;
-import com.CouponManagment.CouponManagment.dto.TypeEnum;
 
 @Repository 
 public class CouponDAO  {
 	@Autowired
-	private CouponReposirory repo;
+	private CouponRepository repo;
 	
 	public void addCoupon(Coupon coupon) {
 		repo.save(coupon);	

@@ -44,7 +44,7 @@ public class JwtAuthenticationController {
 	
 	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest,HttpServletResponse response) throws Exception {
+	public ResponseEntity<?> login(@RequestBody JwtRequest authenticationRequest,HttpServletResponse response) throws Exception {
 		
 		String type = authenticationRequest.getType().toString();
 		String start = "[ROLE_";

@@ -1,68 +1,51 @@
 package com.CouponManagment.CouponManagment.services;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session.Cookie;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CookieValue;
 
-import com.CouponManagment.CouponManagment.config.JwtTokenUtil;
-import com.CouponManagment.CouponManagment.controllers.CompanyController;
-import com.CouponManagment.CouponManagment.dto.Company;
 import com.CouponManagment.CouponManagment.dto.Coupon;
-import com.CouponManagment.CouponManagment.dto.TypeEnum;
-import com.CouponManagment.CouponManagment.repository.CompanyDAO;
 import com.CouponManagment.CouponManagment.repository.CompanyRepository;
-import com.CouponManagment.CouponManagment.repository.CouponDAO;
-import com.CouponManagment.CouponManagment.repository.CouponReposirory;
-import com.CouponManagment.CouponManagment.serviceForJWT.CustomUserDetails;
-import com.CouponManagment.CouponManagment.serviceForJWT.JwtUserDetailsService;
+import com.CouponManagment.CouponManagment.repository.CouponRepository;
 
 @Service
 @Scope("prototype")
 public class CompanyFacade implements CouponClientFacade {
 
 	@Autowired
-	private CouponDAO coupRepo;
+	private CouponRepository coupRepo;
 
 	@Autowired
 	private CompanyRepository cr;
 
 	@Autowired
-	private CouponReposirory cour;
+	private CouponRepository cour;
 
 	public CompanyFacade() {
 
 	}
 
 	public void createCoupon(Coupon coupon) {
-		coupRepo.addCoupon(coupon);
+		coupRepo.save(coupon);
 
 	}
 
-	public void removeCoupon(Coupon coupon) {
-		coupRepo.deleteCoupon(coupon.getId());
+	public void removeCoupon(long id) {
+		coupRepo.deleteById(id);
 	}
 
 	public void updateCoupon(Coupon coup) {
-		coupRepo.updateCoupon(coup.getId(), coup);
+		coupRepo.saveAndFlush(coup);
 	}
 
 	public Coupon getCoupon(long id) {
 	
-		return coupRepo.findCoupon(id);
+		return coupRepo.getOne(id);
 	}
 
 	/*
@@ -70,27 +53,27 @@ public class CompanyFacade implements CouponClientFacade {
 	 * 
 	 * return companyDAO.getCouponsListByCompany(id); }
 	 */
-	public List<Coupon> getAllCouponsByCompany(HttpServletRequest request) {
-		String companyName = getcookie(request);
-		Company company = cr.findByCompanyName(companyName);
-		return (List<Coupon>) company.getCouponsList();
+	public List<Coupon> getAllCouponsByCompany(String companyName) {
+
+		return (List<Coupon>) cr.findByCompanyName(companyName).getCouponsList();
 	}
 
-	public List<Coupon> getCouponsByType(TypeEnum te, HttpServletRequest request) {
-		List<Coupon> allCouponsByCompany = getAllCouponsByCompany(request);
+	public List<Coupon> getCouponsByType(String token ) {
+		List<Coupon> allCouponsByCompany = getAllCouponsByCompany(token);
+
 		// List<Coupon> allCouponsByType= coupInterface.getCouponsByType(te);
 		List<Coupon> couponsCompanyByType = new Vector<Coupon>();
-		for (Coupon curr : allCouponsByCompany) {
-			if (curr.getType().equals(te)) {
+		/*for (Coupon curr : allCouponsByCompany) {
+			if (curr.getType().equals()) {
 				couponsCompanyByType.add(curr);
 			}
-		}
+		}*/
 
 		return couponsCompanyByType;
 	}
 
-	public List<Coupon> getCouponsByPrice(Double price, HttpServletRequest request) {
-		List<Coupon> allCouponsByCompany = getAllCouponsByCompany(request);
+	public List<Coupon> getCouponsByPrice(Double price, String token) {
+		List<Coupon> allCouponsByCompany = getAllCouponsByCompany(token);
 		List<Coupon> couponsCompanyByPrice = new Vector<Coupon>();
 		for (Coupon curr : allCouponsByCompany) {
 			if (curr.getPrice() <= price) {
@@ -100,8 +83,8 @@ public class CompanyFacade implements CouponClientFacade {
 		return couponsCompanyByPrice;
 	}
 
-	public List<Coupon> getCouponByDate(java.util.Date date, HttpServletRequest request) {
-		List<Coupon> allCouponsByCompany = getAllCouponsByCompany(request);
+	public List<Coupon> getCouponByDate(java.util.Date date, String token) {
+		List<Coupon> allCouponsByCompany = getAllCouponsByCompany(token);
 		System.out.println("companyCoupons"+allCouponsByCompany);
 		List<Coupon> couponsCompanyByDate = new Vector<Coupon>();
 		for (Coupon curr : allCouponsByCompany) {
@@ -135,5 +118,6 @@ public class CompanyFacade implements CouponClientFacade {
 		return (defaultValue);
 
 	}
+
 
 }

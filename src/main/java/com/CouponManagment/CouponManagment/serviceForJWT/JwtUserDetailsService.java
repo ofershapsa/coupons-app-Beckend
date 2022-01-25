@@ -1,6 +1,5 @@
 package com.CouponManagment.CouponManagment.serviceForJWT;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -13,11 +12,10 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.CouponManagment.CouponManagment.repository.CompanyRepository;
-import com.CouponManagment.CouponManagment.repository.CustomerReposiroty;
+import com.CouponManagment.CouponManagment.repository.CustomerRepository;
 import com.CouponManagment.CouponManagment.services.ClientType;
 import com.CouponManagment.CouponManagment.config.JwtTokenUtil;
 import com.CouponManagment.CouponManagment.dto.Company;
@@ -31,7 +29,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 	
 	
 	@Autowired
-	private CustomerReposiroty cre;
+	private CustomerRepository cre;
 	
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;

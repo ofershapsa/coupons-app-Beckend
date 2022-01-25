@@ -44,8 +44,8 @@ public class CouponManagmentApplication {
 		// "$2a$10$nIAx35ValBVOlKUArz1KxetlcsFcFNnC7WjkSTHn8SJLCyodGsvlm",
 		// ClientType.CUSTOMER);
 
-		CompanyFacade cof = (CompanyFacade) cs.login("kupot",
-				"$2a$10$JCTc5zHRzmZYsjuXT2TKC.Z5pyk2N1Z//bZXVCTXBs0rZrWZf7qwy", ClientType.COMPANY);
+		//CompanyFacade cof = (CompanyFacade) cs.login("kupot",
+			//	"$2a$10$JCTc5zHRzmZYsjuXT2TKC.Z5pyk2N1Z//bZXVCTXBs0rZrWZf7qwy", ClientType.COMPANY);
 		CustomerDAO cud = ctx.getBean(CustomerDAO.class);
 		CouponDAO coup = ctx.getBean(CouponDAO.class);
 

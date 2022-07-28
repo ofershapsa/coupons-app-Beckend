@@ -18,8 +18,8 @@ import com.CouponManagment.CouponManagment.repository.CompanyRepository;
 import com.CouponManagment.CouponManagment.repository.CustomerRepository;
 import com.CouponManagment.CouponManagment.services.ClientType;
 import com.CouponManagment.CouponManagment.config.JwtTokenUtil;
-import com.CouponManagment.CouponManagment.dto.Company;
-import com.CouponManagment.CouponManagment.dto.Customer;
+import com.CouponManagment.CouponManagment.model.Company;
+import com.CouponManagment.CouponManagment.model.Customer;
 
 @Service
 public class JwtUserDetailsService implements UserDetailsService {

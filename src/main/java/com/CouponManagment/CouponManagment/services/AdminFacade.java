@@ -1,7 +1,6 @@
 package com.CouponManagment.CouponManagment.services;
 
 
-import java.util.Base64;
 import java.util.List;
 
 import com.CouponManagment.CouponManagment.repository.*;
@@ -9,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.CouponManagment.CouponManagment.dto.Company;
-import com.CouponManagment.CouponManagment.dto.Customer;
+import com.CouponManagment.CouponManagment.model.Company;
+import com.CouponManagment.CouponManagment.model.Customer;
 
 @Service
 //@Scope("singleton")

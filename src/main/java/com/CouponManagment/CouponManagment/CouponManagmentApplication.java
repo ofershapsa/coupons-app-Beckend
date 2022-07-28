@@ -1,18 +1,8 @@
 package com.CouponManagment.CouponManagment;
 
-import java.util.GregorianCalendar;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import com.CouponManagment.CouponManagment.dto.Company;
-import com.CouponManagment.CouponManagment.dto.Coupon;
-import com.CouponManagment.CouponManagment.dto.Customer;
-import com.CouponManagment.CouponManagment.dto.TypeEnum;
-import com.CouponManagment.CouponManagment.services.AdminFacade;
-import com.CouponManagment.CouponManagment.services.ClientType;
-import com.CouponManagment.CouponManagment.services.CompanyFacade;
-import com.CouponManagment.CouponManagment.services.CustomerFacade;
 
 @SpringBootApplication
 public class CouponManagmentApplication {

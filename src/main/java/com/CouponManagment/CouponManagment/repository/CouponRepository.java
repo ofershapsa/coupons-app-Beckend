@@ -4,14 +4,12 @@ package com.CouponManagment.CouponManagment.repository;
 
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
-import com.CouponManagment.CouponManagment.dto.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.CouponManagment.CouponManagment.dto.Coupon;
-import com.CouponManagment.CouponManagment.dto.TypeEnum;
+import com.CouponManagment.CouponManagment.model.Coupon;
+import com.CouponManagment.CouponManagment.model.TypeEnum;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 

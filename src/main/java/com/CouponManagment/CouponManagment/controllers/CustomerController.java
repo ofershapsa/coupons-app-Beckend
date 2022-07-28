@@ -1,8 +1,7 @@
 package com.CouponManagment.CouponManagment.controllers;
 
-import com.CouponManagment.CouponManagment.dto.Company;
-import com.CouponManagment.CouponManagment.dto.Coupon;
-import com.CouponManagment.CouponManagment.dto.TypeEnum;
+import com.CouponManagment.CouponManagment.model.Coupon;
+import com.CouponManagment.CouponManagment.model.TypeEnum;
 import com.CouponManagment.CouponManagment.services.CustomerFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

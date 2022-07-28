@@ -1,4 +1,4 @@
-package com.CouponManagment.CouponManagment.dto;
+package com.CouponManagment.CouponManagment.model;
 
 public enum TypeEnum {
 	RESTURANTS,

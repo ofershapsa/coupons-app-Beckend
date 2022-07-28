@@ -1,14 +1,12 @@
 package com.CouponManagment.CouponManagment.data;
 
-import com.CouponManagment.CouponManagment.dto.Company;
-import com.CouponManagment.CouponManagment.dto.Coupon;
-import com.CouponManagment.CouponManagment.dto.Customer;
-import com.CouponManagment.CouponManagment.dto.TypeEnum;
+import com.CouponManagment.CouponManagment.model.Company;
+import com.CouponManagment.CouponManagment.model.Coupon;
+import com.CouponManagment.CouponManagment.model.Customer;
+import com.CouponManagment.CouponManagment.model.TypeEnum;
 import com.CouponManagment.CouponManagment.repository.CompanyRepository;
 import com.CouponManagment.CouponManagment.repository.CouponRepository;
 import com.CouponManagment.CouponManagment.repository.CustomerRepository;
-import lombok.Builder;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
@@ -16,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 
 @Component

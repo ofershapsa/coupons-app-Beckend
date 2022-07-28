@@ -1,18 +1,10 @@
 package com.CouponManagment.CouponManagment.controllers;
 
-import java.net.HttpCookie;
-
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
-import org.springframework.http.ResponseCookie.ResponseCookieBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.ResponseEntity.BodyBuilder;
-import org.springframework.http.ResponseEntity.HeadersBuilder;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -25,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.CouponManagment.CouponManagment.config.JwtTokenUtil;
-import com.CouponManagment.CouponManagment.model.JwtRequest;
-import com.CouponManagment.CouponManagment.model.JwtResponse;
+import com.CouponManagment.CouponManagment.modelForJWT.JwtRequest;
+import com.CouponManagment.CouponManagment.modelForJWT.JwtResponse;
 import com.CouponManagment.CouponManagment.serviceForJWT.JwtUserDetailsService;
 
 

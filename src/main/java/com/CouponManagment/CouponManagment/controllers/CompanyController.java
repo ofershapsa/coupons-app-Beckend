@@ -1,18 +1,12 @@
 package com.CouponManagment.CouponManagment.controllers;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import com.CouponManagment.CouponManagment.config.JwtTokenUtil;
 import com.CouponManagment.CouponManagment.controllers.request.CouponsByCompany;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.CouponManagment.CouponManagment.dto.Company;
-import com.CouponManagment.CouponManagment.dto.Coupon;
-import com.CouponManagment.CouponManagment.dto.Customer;
-import com.CouponManagment.CouponManagment.dto.TypeEnum;
-import com.CouponManagment.CouponManagment.serviceForJWT.JwtUserDetailsService;
+import com.CouponManagment.CouponManagment.model.Coupon;
+import com.CouponManagment.CouponManagment.model.TypeEnum;
 import com.CouponManagment.CouponManagment.services.CompanyFacade;
 
 @RestController

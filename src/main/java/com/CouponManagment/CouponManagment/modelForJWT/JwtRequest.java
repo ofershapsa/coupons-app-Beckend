@@ -1,4 +1,4 @@
-package com.CouponManagment.CouponManagment.model;
+package com.CouponManagment.CouponManagment.modelForJWT;
 import java.io.Serializable;
 
 import com.CouponManagment.CouponManagment.services.ClientType;

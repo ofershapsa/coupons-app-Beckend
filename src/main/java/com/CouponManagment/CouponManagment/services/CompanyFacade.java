@@ -5,17 +5,14 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
-
-import javax.servlet.http.HttpServletRequest;
 
 import com.CouponManagment.CouponManagment.config.JwtTokenUtil;
-import com.CouponManagment.CouponManagment.dto.TypeEnum;
+import com.CouponManagment.CouponManagment.model.TypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import com.CouponManagment.CouponManagment.dto.Coupon;
+import com.CouponManagment.CouponManagment.model.Coupon;
 import com.CouponManagment.CouponManagment.repository.CompanyRepository;
 import com.CouponManagment.CouponManagment.repository.CouponRepository;
 

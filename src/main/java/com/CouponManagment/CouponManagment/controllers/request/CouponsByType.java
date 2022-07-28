@@ -1,7 +1,6 @@
 package com.CouponManagment.CouponManagment.controllers.request;
 
-import com.CouponManagment.CouponManagment.dto.TypeEnum;
-import com.CouponManagment.CouponManagment.services.ClientType;
+import com.CouponManagment.CouponManagment.model.TypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

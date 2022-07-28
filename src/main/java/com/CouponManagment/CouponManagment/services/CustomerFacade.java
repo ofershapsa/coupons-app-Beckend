@@ -1,18 +1,17 @@
 package com.CouponManagment.CouponManagment.services;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 import com.CouponManagment.CouponManagment.config.JwtTokenUtil;
-import com.CouponManagment.CouponManagment.dto.Customer;
-import com.CouponManagment.CouponManagment.dto.TypeEnum;
+import com.CouponManagment.CouponManagment.model.Customer;
+import com.CouponManagment.CouponManagment.model.TypeEnum;
 import com.CouponManagment.CouponManagment.repository.CouponRepository;
 import com.CouponManagment.CouponManagment.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import com.CouponManagment.CouponManagment.dto.Coupon;
+import com.CouponManagment.CouponManagment.model.Coupon;
 
 
 @Service

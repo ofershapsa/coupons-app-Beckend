@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import com.CouponManagment.CouponManagment.repository.CompanyRepository;
+import com.CouponManagment.CouponManagment.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
@@ -13,11 +15,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.CouponManagment.CouponManagment.dto.Company;
 import com.CouponManagment.CouponManagment.dto.Customer;
-import com.CouponManagment.CouponManagment.repository.CompanyDAO;
-import com.CouponManagment.CouponManagment.repository.CustomerDAO;
 import com.CouponManagment.CouponManagment.services.AdminFacade;
 import com.CouponManagment.CouponManagment.services.ClientType;
 import com.CouponManagment.CouponManagment.services.CompanyFacade;
@@ -29,9 +28,9 @@ public class CouponSystem {
 	@Autowired
 	private DailyCouponExpirationTask task;
 	@Autowired
-	private CompanyDAO companyDAO;
+	private CompanyRepository companyRepository;
 	@Autowired
-	private CustomerDAO custDAO;
+	private CustomerRepository customerRepository;
 	@Autowired
 	private  AdminFacade af;
 	@Autowired
@@ -58,8 +57,8 @@ private  ApplicationContext ctx;
 		};
 		
 		
-		List<Company> companies = companyDAO.selectAllCompanies();
-		List<Customer> customers = custDAO.selectAllCustomers();
+		List<Company> companies = companyRepository.findAll();
+		List<Customer> customers = customerRepository.findAll();
 		if(name.equals("admin") && password.equals("1234") && type.equals(ClientType.ADMIN)){
 			
 			  

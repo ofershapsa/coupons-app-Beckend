@@ -3,18 +3,18 @@ package com.CouponManagment.CouponManagment;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.CouponManagment.CouponManagment.repository.CouponRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-
 import com.CouponManagment.CouponManagment.dto.Coupon;
-import com.CouponManagment.CouponManagment.repository.CouponDAO;
+
 
 @Service
 @Scope("singleton")
 public class DailyCouponExpirationTask implements Runnable {
 	@Autowired
-	private CouponDAO couponDAO ;
+	private CouponRepository couponRepository ;
 	private boolean quit;
 	 
 	

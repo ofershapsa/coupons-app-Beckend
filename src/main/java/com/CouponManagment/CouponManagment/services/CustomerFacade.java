@@ -12,9 +12,8 @@ import com.CouponManagment.CouponManagment.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-
 import com.CouponManagment.CouponManagment.dto.Coupon;
-import com.CouponManagment.CouponManagment.repository.CouponDAO;
+
 
 @Service
 @Scope("prototype")

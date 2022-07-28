@@ -1,6 +1,7 @@
 package com.CouponManagment.CouponManagment.services;
 
 
+import java.util.Base64;
 import java.util.List;
 
 import com.CouponManagment.CouponManagment.repository.*;
@@ -40,13 +41,22 @@ public class AdminFacade implements CouponClientFacade {
     }
 
     public void updateCompany(Company comp) {
-        comp.setPassword(bcryptEncoder.encode(comp.getPassword()));
+        Company company = compRepo.getOne(comp.getId());
+        if(company.getEmail()!=comp.getEmail()&&comp.getEmail()!=null){
+            company.setEmail(comp.getEmail());
+        }
+        if(company.getCompanyName()!=comp.getCompanyName()&&comp.getCompanyName() != null){
+            company.setCompanyName(comp.getCompanyName());
+        }
+        if(comp.getPassword()!=null)
+        company.setPassword(bcryptEncoder.encode(comp.getPassword()));
        // comp.setEmail(comp.getEmail());
-        compRepo.saveAndFlush(comp);
+        compRepo.saveAndFlush(company);
 
     }
 
     public Company getCompany(long id) {
+        
         return compRepo.findById(id).get();
     }
 
@@ -64,9 +74,17 @@ public class AdminFacade implements CouponClientFacade {
     }
 
     public void updateCustomer(Customer cust) {
-        cust.setPassword(bcryptEncoder.encode(cust.getPassword()));
-        custRepo.saveAndFlush(cust);
 
+        Customer customer = custRepo.getOne(cust.getId());
+        System.out.println(cust);
+        if(customer.getCustomerName()!=cust.getCustomerName()&&cust.getCustomerName().length()!=0) {
+            customer.setCustomerName(cust.getCustomerName());
+        }
+        if(cust.getPassword()!=null)
+        customer.setPassword(bcryptEncoder.encode(cust.getPassword()));
+
+
+        custRepo.saveAndFlush(customer);
     }
 
     public Customer getCustomer(long id) {

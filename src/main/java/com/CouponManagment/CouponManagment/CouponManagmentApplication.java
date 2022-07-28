@@ -23,20 +23,20 @@ public class CouponManagmentApplication {
 	public static void main(String[] args) {
 
 		ApplicationContext ctx = SpringApplication.run(CouponManagmentApplication.class, args);
-		CouponSystem cs = ctx.getBean(CouponSystem.class);
+	//	CouponSystem cs = ctx.getBean(CouponSystem.class);
 //	AdminFacade	 af=(AdminFacade) cs.login("admin","1234" , ClientType.ADMIN);
-		Customer customer = new Customer();
-		customer.setCustomerName("ofer shapsa");
-		customer.setPassword("ofer123");
+	//	Customer customer = new Customer();
+	//	customer.setCustomerName("ofer shapsa");
+	//	customer.setPassword("ofer123");
 		// af.createCustomer(customer);
 //		System.out.println(af.getCustomer(1L));
-		Company company = new Company();
-		company.setCompanyName("kupot");
-		company.setPassword("kupot123");
-		company.setEmail("kupot@gmail.com");
+	//	Company company = new Company();
+	//	company.setCompanyName("kupot");
+	//	company.setPassword("kupot123");
+	//	company.setEmail("kupot@gmail.com");
 		// af.createCompany(company);
 	//System.out.println(	af.getCompany(3L));
-		CompanyDAO cd = ctx.getBean(CompanyDAO.class);
+		//CompanyDAO cd = ctx.getBean(CompanyDAO.class);
 		// company = cd.findCompany(5L);
 //	af.removeCompany(company);
 
@@ -46,12 +46,12 @@ public class CouponManagmentApplication {
 
 		//CompanyFacade cof = (CompanyFacade) cs.login("kupot",
 			//	"$2a$10$JCTc5zHRzmZYsjuXT2TKC.Z5pyk2N1Z//bZXVCTXBs0rZrWZf7qwy", ClientType.COMPANY);
-		CustomerDAO cud = ctx.getBean(CustomerDAO.class);
-		CouponDAO coup = ctx.getBean(CouponDAO.class);
+	//	CustomerDAO cud = ctx.getBean(CustomerDAO.class);
+	//	CouponDAO coup = ctx.getBean(CouponDAO.class);
 
-		long millis = System.currentTimeMillis();
-		java.util.Date ds = new java.util.Date(millis);
-		java.util.Date de = new GregorianCalendar(2022, 0, 12).getTime();
+	//	long millis = System.currentTimeMillis();
+	//	java.util.Date ds = new java.util.Date(millis);
+	//	java.util.Date de = new GregorianCalendar(2022, 0, 12).getTime();
 		// System.out.println(ds);
 		// System.out.println(de);
 

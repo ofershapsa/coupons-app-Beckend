@@ -49,6 +49,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 			} 
 			if(customer!=null) {
 				jwtTokenUtil.setClientType(ClientType.CUSTOMER);
+				jwtTokenUtil.setId(customer.getId());
 				return new org.springframework.security.core.userdetails.User(customer.getCustomerName(), customer.getPassword(),
 						getAuthorities(ClientType.CUSTOMER));
 			}
@@ -57,6 +58,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		
 		
 		jwtTokenUtil.setClientType(ClientType.COMPANY);
+		jwtTokenUtil.setId(company.getId());
 		return new org.springframework.security.core.userdetails.User(company.getCompanyName(), company.getPassword(),
 				getAuthorities(ClientType.COMPANY));
 		

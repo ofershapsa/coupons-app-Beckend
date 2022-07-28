@@ -1,30 +1,73 @@
 package com.CouponManagment.CouponManagment.data;
 
 import com.CouponManagment.CouponManagment.dto.Company;
+import com.CouponManagment.CouponManagment.dto.Coupon;
+import com.CouponManagment.CouponManagment.dto.Customer;
+import com.CouponManagment.CouponManagment.dto.TypeEnum;
 import com.CouponManagment.CouponManagment.repository.CompanyRepository;
 import com.CouponManagment.CouponManagment.repository.CouponRepository;
 import com.CouponManagment.CouponManagment.repository.CustomerRepository;
 import lombok.Builder;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+import java.util.Date;
+
 
 @Component
 @Order(1)
 public class DemoData implements CommandLineRunner {
 @Autowired
-private CompanyRepository companyRepository;
+private  CompanyRepository companyRepository;
 @Autowired
 private CustomerRepository customerRepository;
 @Autowired
 private CouponRepository couponRepository;
+@Autowired
+private PasswordEncoder bcryptEncoder;
+
 
     @Override
     public void run(String... args) throws Exception {
+        Coupon coupon = Coupon.builder()
+                .amount(15)
+                .startDate(LocalDateTime.now())
+                .endDate(LocalDateTime.now())
+                .companyID(1L)
+                .message("new watch")
+                .title("watch")
+                .type(TypeEnum.ELECTRICITY)
+                .price(150.0)
+                .image("watch.jpg")
+                .build();
+
+        Company company = Company.builder()
+                .companyName("nike")
+                .couponsList(coupon)
+                .password(bcryptEncoder.encode("nike123"))
+                .email("nike@gmail.com")
+                .build();
+
+
+
+        companyRepository.save(company);
+
+        Customer customer = Customer.builder()
+                .customerName("ofer")
+                .password(bcryptEncoder.encode("ofer123"))
+                .couponsList(coupon)
+                .build();
+
+        customerRepository.save(customer);
 
 
 
 
-    }
+
+     }
 }

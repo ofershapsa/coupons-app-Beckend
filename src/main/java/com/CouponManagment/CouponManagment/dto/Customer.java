@@ -22,7 +22,7 @@ public class Customer {
 	private  String customerName;
     private String password;
 	@Singular("couponsList")
-	@OneToMany (fetch = FetchType.EAGER)
+	@ManyToMany (fetch = FetchType.EAGER)
    private List<Coupon> couponsList = new ArrayList<>() ;
     
     

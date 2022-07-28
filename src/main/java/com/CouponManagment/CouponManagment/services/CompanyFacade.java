@@ -1,10 +1,16 @@
 package com.CouponManagment.CouponManagment.services;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.CouponManagment.CouponManagment.config.JwtTokenUtil;
+import com.CouponManagment.CouponManagment.dto.TypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -16,108 +22,80 @@ import com.CouponManagment.CouponManagment.repository.CouponRepository;
 @Service
 @Scope("prototype")
 public class CompanyFacade implements CouponClientFacade {
+    @Autowired
+    JwtTokenUtil jwu;
 
-	@Autowired
-	private CouponRepository coupRepo;
+    @Autowired
+    private CouponRepository coupRepo;
 
-	@Autowired
-	private CompanyRepository cr;
+    @Autowired
+    private CompanyRepository cr;
 
-	@Autowired
-	private CouponRepository cour;
+    @Autowired
+    private CouponRepository cour;
 
-	public CompanyFacade() {
+    public CompanyFacade() {
 
-	}
+    }
 
-	public void createCoupon(Coupon coupon) {
-		coupRepo.save(coupon);
+    public void createCoupon(Coupon coupon) {
+        coupRepo.save(coupon);
 
-	}
+    }
 
-	public void removeCoupon(long id) {
-		coupRepo.deleteById(id);
-	}
+    public void removeCoupon(long id) {
+        coupRepo.deleteById(id);
+    }
 
-	public void updateCoupon(Coupon coup) {
-		coupRepo.saveAndFlush(coup);
-	}
+    public void updateCoupon(Coupon coup) {
+        coupRepo.saveAndFlush(coup);
+    }
 
-	public Coupon getCoupon(long id) {
-	
-		return coupRepo.getOne(id);
-	}
+    public Coupon getCoupon(long id) {
 
-	/*
-	 * public List<Coupon> getAllCouponsByCompany(long id) {
-	 * 
-	 * return companyDAO.getCouponsListByCompany(id); }
-	 */
-	public List<Coupon> getAllCouponsByCompany(String companyName) {
+        return coupRepo.getOne(id);
+    }
 
-		return (List<Coupon>) cr.findByCompanyName(companyName).getCouponsList();
-	}
 
-	public List<Coupon> getCouponsByType(String token ) {
-		List<Coupon> allCouponsByCompany = getAllCouponsByCompany(token);
+    public List<Coupon> getAllCouponsByCompany(String companyName) {
 
-		// List<Coupon> allCouponsByType= coupInterface.getCouponsByType(te);
-		List<Coupon> couponsCompanyByType = new Vector<Coupon>();
-		/*for (Coupon curr : allCouponsByCompany) {
-			if (curr.getType().equals()) {
-				couponsCompanyByType.add(curr);
-			}
-		}*/
+        return (List<Coupon>) cr.findByCompanyName(companyName).getCouponsList();
+    }
 
-		return couponsCompanyByType;
-	}
+    public List<Coupon> getCouponsByType(TypeEnum ct) {
 
-	public List<Coupon> getCouponsByPrice(Double price, String token) {
-		List<Coupon> allCouponsByCompany = getAllCouponsByCompany(token);
-		List<Coupon> couponsCompanyByPrice = new Vector<Coupon>();
-		for (Coupon curr : allCouponsByCompany) {
-			if (curr.getPrice() <= price) {
-				couponsCompanyByPrice.add(curr);
-			}
-		}
-		return couponsCompanyByPrice;
-	}
+        Long compenyID = jwu.getId();
+        System.out.println(compenyID);
 
-	public List<Coupon> getCouponByDate(java.util.Date date, String token) {
-		List<Coupon> allCouponsByCompany = getAllCouponsByCompany(token);
-		System.out.println("companyCoupons"+allCouponsByCompany);
-		List<Coupon> couponsCompanyByDate = new Vector<Coupon>();
-		for (Coupon curr : allCouponsByCompany) {
-			
-			if ((curr.getEndDate().before(date)) || (curr.getEndDate().equals(date))) {
-				couponsCompanyByDate.add(curr);
-			}
-		}
-		System.out.println("couponsCompanyByDate"+couponsCompanyByDate);
-		return couponsCompanyByDate;
-	}
+        List<Coupon> couponsCompanyByType = coupRepo.getCouponsByTypeAndCompanyID(ct, compenyID);
+        System.out.println(ct);
+        System.out.println(couponsCompanyByType);
 
-	public String getcookie(HttpServletRequest request) {
 
-		javax.servlet.http.Cookie[] cookies = request.getCookies();
+        return couponsCompanyByType;
+    }
 
-		String cookieName = "userName";
+    public List<Coupon> getCouponsByPrice(Double price) {
+        Long compenyID = jwu.getId();
 
-		String defaultValue = "not found";
+        List<Coupon> couponsCompanyByPrice = coupRepo.getCouponByPriceLessThanEqualAndCompanyID(price, compenyID);
 
-		for (int i = 0; i < cookies.length; i++) {
+        return couponsCompanyByPrice;
+    }
 
-			javax.servlet.http.Cookie cookie = cookies[i];
+    public List<Coupon> getCouponByDate(Date date) {
+        Long compenyID = jwu.getId();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime dateTime = date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
 
-			if (cookieName.equals(cookie.getName()))
+        List<Coupon> couponsCompanyByDate = coupRepo.getCouponByEndDateBeforeAndCompanyID(dateTime, compenyID);
 
-				return (cookie.getValue());
+        return couponsCompanyByDate;
+    }
 
-		}
 
-		return (defaultValue);
-
-	}
 
 
 }

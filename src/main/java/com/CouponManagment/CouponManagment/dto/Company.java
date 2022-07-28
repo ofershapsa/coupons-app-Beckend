@@ -24,7 +24,7 @@ public class Company {
     private String password;
     private String email;
 	@Singular("couponsList")
-	@OneToMany (fetch = FetchType.EAGER)
+	@OneToMany (cascade =CascadeType.ALL ,fetch = FetchType.EAGER)
     private List<Coupon> couponsList = new ArrayList<>() ;
         
 

@@ -1,6 +1,7 @@
 package com.CouponManagment.CouponManagment.controllers;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,25 +60,26 @@ public class CompanyController {
 	
 
 	@CrossOrigin
-	@RequestMapping(value = "/getCouponsByType/{type}", method = RequestMethod.GET)
-	public List<Coupon> getCouponsByType(@PathVariable("type")TypeEnum te,String token) {
+
+	@RequestMapping(value = "/coupons/{type}", method = RequestMethod.GET)
+	public List<Coupon> getCouponsByType(@PathVariable("type")TypeEnum te) {
 		
-		return cf.getCouponsByType(token);
+		return cf.getCouponsByType(te);
 	}
-	
+
 	
 	@CrossOrigin
 	@RequestMapping(value = "/getCouponsByPrice/{price}", method = RequestMethod.GET)
-	public List<Coupon> getCouponsByPrice(@PathVariable("price")double price,String token) {
+	public List<Coupon> getCouponsByPrice(@PathVariable("price")double price) {
 		
-		return cf.getCouponsByPrice(price, token);
+		return cf.getCouponsByPrice(price);
 	}
 	
 	@CrossOrigin
 	@RequestMapping(value = "/getCouponsByDate/{date}", method = RequestMethod.GET)
-	public List<Coupon> getCouponsByDate(@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") java.util.Date date ,String token) {
-		
-		return cf.getCouponByDate(date, token);
+	public List<Coupon> getCouponsByDate(@PathVariable("date") @DateTimeFormat(pattern = "dd.MM.yyyy") Date date ) {
+
+		return cf.getCouponByDate(date);
 	}
 	
 	@CrossOrigin
